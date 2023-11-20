@@ -8,11 +8,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - name: Say hello
-        run: |
-          echo ${{ secrets.MY_RENDER_SERVICE_ID }}
       - name: Deploy to production
         uses: johnbeynon/render-deploy-action@v0.0.8
         with:
