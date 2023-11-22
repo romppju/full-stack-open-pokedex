@@ -32,7 +32,7 @@ jobs:
           wait-on: http://localhost:5000
       - name: Message
         env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+          COMMIT_MESSAGES: ${{ join(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
       - name: Deploy
         if: ${{ github.event_name == 'push' }}
