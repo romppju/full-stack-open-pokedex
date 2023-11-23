@@ -41,8 +41,8 @@ jobs:
         if: ${{ success() }}
         with:
           severity: info
+          text: A new version to Pokedex deployed
           description: This is a custom description
-          details: Build succeeded!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deployment failure
         uses: rjstone/discord-webhook-notify@v1
@@ -52,6 +52,10 @@ jobs:
           description: This is a custom description
           details: Build failed!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: commits
+        env:
+          COMMITS: ${{ toJson(github.event.commits) }}
+        run: echo "$COMMITS"
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
