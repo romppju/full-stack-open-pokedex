@@ -41,7 +41,7 @@ jobs:
         if: ${{ success() }}
         with:
           severity: info
-          text: A new version to Pokedex deployed
+          text: A new version of Pokedex deployed
           description: To https://pokedex-ul5y.onrender.com by ${{ github.repository_owner }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deployment failure
