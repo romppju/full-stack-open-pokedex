@@ -49,13 +49,16 @@ jobs:
         if: ${{ failure() }}
         with:
           severity: error
-          description: This is a custom description
-          details: Build failed!
+          description: Commit ${{ github.event.commits[0].url }} broke the build by ${{ github.repository_owner }} failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: commits
         env:
-          COMMITS: ${{ toJson(github.event.commits) }}
+          COMMITS: ${{ github.event.commits[0].url }}
         run: echo "$COMMITS"
+      - name: owner
+        env:
+          OWNER: ${{ github.repository_owner }}
+        run: echo "$OWNER"
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
