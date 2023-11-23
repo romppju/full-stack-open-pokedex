@@ -42,14 +42,14 @@ jobs:
         with:
           severity: info
           text: A new version to Pokedex deployed
-          description: This is a custom description
+          description: To https://pokedex-ul5y.onrender.com by ${{ github.repository_owner }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deployment failure
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ failure() }}
         with:
           severity: error
-          description: Commit ${{ github.event.commits[0].url }} broke the build by ${{ github.repository_owner }} failed
+          description: Commit ${{ github.event.commits[0].url }} by ${{ github.repository_owner }} broke the build
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: commits
         env:
